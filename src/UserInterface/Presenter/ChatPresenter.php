@@ -2,6 +2,7 @@
 
 namespace App\UserInterface\Presenter;
 
+use App\Domain\Entity\Message;
 use App\Domain\Presenter\ChatPresenterInterface;
 use App\Domain\Response\ChatResponse;
 use App\UserInterface\ViewModel\ChatViewModel;
@@ -18,7 +19,9 @@ class ChatPresenter implements ChatPresenterInterface
 
     public function present(ChatResponse $chatResponse)
     {
-        $this->chatViewModel = new ChatViewModel($chatResponse->getMessages());
+        $this->chatViewModel = new ChatViewModel(
+            array_map(fn(Message $message) => $message->getContent(), $chatResponse->getMessages())
+        );
     }
 
     /**

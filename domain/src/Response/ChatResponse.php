@@ -3,10 +3,12 @@
 namespace App\Domain\Response;
 
 // DTO qui va contenir les données
+use App\Domain\Entity\Message;
+
 class ChatResponse
 {
     /**
-     * @var array
+     * @var Message[]
      */
     private $messages = [];
 
@@ -19,7 +21,7 @@ class ChatResponse
     }
 
     /**
-     * @return array
+     * @return Message[]
      */
     public function getMessages(): array
     {
